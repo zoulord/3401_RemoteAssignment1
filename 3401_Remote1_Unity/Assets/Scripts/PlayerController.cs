@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
     public int pickupLayer;
 
     private Rigidbody _rb;
-    private int _remainingJumps = 2;
     private int _remainingHealth = 3;
     private int _pickupsCollected = 0;
 
@@ -52,7 +51,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // Listen for jump input
-        if (Input.GetKeyDown(jumpInput) && _remainingJumps > 0)
+        if (Input.GetKeyDown(jumpInput))
         {
             Jump();
         }
@@ -73,29 +72,12 @@ public class PlayerController : MonoBehaviour
 
         // Add velocity for "jump" effect
         _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        
-        // Decrease our remaining jump count
-        _remainingJumps -= 1;
     }
     
     #endregion Jump
     
     
     #region Collision
-
-    /// <summary>
-    /// Unity event responding to collisions
-    /// </summary>
-    /// <param name="other"></param>
-    private void OnCollisionEnter(Collision other)
-    {
-        // Did we collide with the ground?
-        if (other.gameObject.layer == groundLayer)
-        {
-            _remainingJumps = 2;
-        }
-    }
-
 
     /// <summary>
     /// Responds to collisions with trigger colliders

@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 10;
     
     [Header("Layers")]
-    public int groundLayer;
     public int obstacleLayer;
     public int pickupLayer;
 
